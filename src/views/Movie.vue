@@ -1,22 +1,24 @@
 <template>
   <div class="movies">
-    <h1>This is an movie page</h1>
-    <div id="movies">
-      <!-- <ul>
-        <li v-for="item in arrs" v-bind:key="item.name">
-          <img v-bind:src="item.cover" class="cover" style="width: 100px" />
-          <span class="id">{{item.name}}</span>
-          <span class="name">{{item.name}}</span>
-          <span class="link">{{item.link}}</span>
-        </li>
-      </ul> -->
-      <Table :data="historyMovie" :columns="columns1" stripe></Table>
-      <div style="margin: 10px;overflow: hidden">
-        <div style="float: right;">
-            <Page :total="arrs.length" :current="1" :page-size="pageSize" @on-change="changePage" ></Page>
+    <Layout>
+      <Header style="background-color: #fff;">
+        <!-- <SearchInput></SearchInput> -->
+        <Input search enter-button placeholder="关键字搜索" size="large" style="width: 400px; margin: auto; top: 25%;" @on-search="selectMovies" />
+      </Header>
+      <Content>
+        <div id="movies" style="width: 80%; margin: auto">
+        <BackTop></BackTop>
+          <Table :data="historyMovie" :columns="columns1" :loading="loading" @on-row-click="showMovieDetail" stripe></Table>
+          <div style="margin: 10px;overflow: hidden">
+            <div style="float: right;">
+              <Page :total="arrs.length" :current="1" :page-size="pageSize" @on-change="changePage" ></Page>
+            </div>
+          </div>
         </div>
-    </div>
-    </div>
+      </Content>
+      <Footer style="background-color: #fff;"></Footer>
+    </Layout>
+    
   </div>
 </template>
 
@@ -29,6 +31,7 @@ export default {
       movieCount: 0,
       pageSize: 10,
       historyMovie: [],
+      loading: true,
       columns1: [
         {
           title: '电影海报',
@@ -37,10 +40,7 @@ export default {
             // console.log(params.row).cover;
             return h('img', {
               attrs: {
-                src: params.cover,
-              },
-              style: {
-                width: '100px',
+                src: params.row.cover, style: 'width:100px',
               },
             });
           },
@@ -62,7 +62,7 @@ export default {
   },
   methods: {
     handleListApproveHistory() {
-      this.dataCount = arrs.length;
+      this.dataCount = this.arrs.length;
       if (this.dataCount < this.pageSize) {
         this.historyMovie = this.arrs;
       } else {
@@ -73,13 +73,37 @@ export default {
       const start = (index - 1) * this.pageSize;
       const end = index * this.pageSize;
       this.historyMovie = this.arrs.slice(start, end);
-      // console.log(this.historyMovie);
+    },
+    showMovieDetail(e, index) {
+      this.$router.push({
+        path: '/movieDetail',
+        query: {
+         type: e,
+        },
+      });
+    },
+    selectMovies(searchMovies) {
+      this.loading = true;
+      this.$router.push({
+                path: '/movie',
+                query: {
+                    type: searchMovies,
+                },
+            });
+      this.$http.get('https://movie.house-map.cn/v1/movies/' + searchMovies)
+      .then((data) => {
+      this.arrs = data.data.data;
+      this.loading = false;
+      this.handleListApproveHistory();
+    });
     },
   },
   created() {
     this.$http.get('https://movie.house-map.cn/v1/movies/' + this.$route.query.type)
     .then((data) => {
       this.arrs = data.data.data;
+      this.loading = false;
+      this.handleListApproveHistory();
     });
   },
 };

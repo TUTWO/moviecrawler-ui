@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div id="nav">
-      <!-- <router-link to="/movie">Movie</router-link> -->
-
+      双马尾放映室
+      <Icon type="logo-youtube" />
     </div>
     <router-view/>
     </div>
@@ -17,14 +17,17 @@
   color: #2c3e50;
 }
 #nav {
-  padding: 30px;
-  background-color: #515a6e;
+  padding: 10px;
+  background-color: #1E89E0;
   a {
     font-weight: bold;
     color: #2c3e50;
     &.router-link-exact-active {
       color: #42b983;
     }
-  }
+  };
+  text-align: left;
+  color: #ffffff;
+  font-size: 28px;
 }
 </style>
