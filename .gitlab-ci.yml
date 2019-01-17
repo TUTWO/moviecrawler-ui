@@ -9,21 +9,21 @@ stages:
 build-image:
   stage: build
   tags:
-    - liguobao
+    - ci.twin-tail.cn
   script: 
     - docker build -t $IMAGE_NAME .
 
 push-image:
   stage: push
   tags:
-    - liguobao
+    - ci.twin-tail.cn
   script:
     - docker push $IMAGE_NAME
 
 deploy:
   stage: deploy
   tags:
-    - liguobao
+    - ci.twin-tail.cn
   script:
     - find ./start.sh -type f -exec sh -c 'envsubst < {} > {}.tmp.sh' \;
     - chmod +x start.sh.tmp.sh
