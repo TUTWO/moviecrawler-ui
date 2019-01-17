@@ -1,0 +1,33 @@
+variables:
+  IMAGE_NAME: "registry.cn-shanghai.aliyuncs.com/liguobao/movie-crawler:ui-$CI_COMMIT_SHA"
+
+stages:
+  - build
+  - push
+  - deploy
+
+build-image:
+  stage: build
+  tags:
+    - liguobao
+  script: 
+    - docker build -t $IMAGE_NAME .
+
+push-image:
+  stage: push
+  tags:
+    - liguobao
+  script:
+    - docker push $IMAGE_NAME
+
+deploy:
+  stage: deploy
+  tags:
+    - liguobao
+  script:
+    - find ./start.sh -type f -exec sh -c 'envsubst < {} > {}.tmp.sh' \;
+    - chmod +x start.sh.tmp.sh
+    - ./start.sh.tmp.sh
+  only:
+    - master
+
