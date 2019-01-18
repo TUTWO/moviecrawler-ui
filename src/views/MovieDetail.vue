@@ -34,8 +34,10 @@
                     </p>
                 </div>
             </div>
-            <Footer style="margin: 20px;"></Footer>
+            <Footer style="margin: 20px;">
+            </Footer>
         </Layout>
+        <Recommendation></Recommendation>
     </div>
 </template>
 <script>
