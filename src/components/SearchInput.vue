@@ -12,11 +12,12 @@ export default {
     methods: {
         selectMovies(searchMovies) {
             this.$router.push({
-                path: '/movie',
-                query: {
+                name: 'movie',
+                params: {
                     type: searchMovies,
                 },
             });
+            localStorage.setItem('type', searchMovies);
         },
     },
 };

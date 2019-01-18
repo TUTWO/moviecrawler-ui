@@ -7,9 +7,12 @@ import iView from 'iview';
 import 'iview/dist/styles/iview.css';
 import VueRouter from 'vue-router';
 import SearchInput from './components/SearchInput.vue';
+import MenuType from './components/MenuType.vue';
 
 Vue.config.productionTip = false;
 Vue.component('SearchInput', SearchInput);
+Vue.component('MenuType', MenuType);
+
 Vue.use(VueResource);
 Vue.use(iView);
 Vue.use(VueRouter);

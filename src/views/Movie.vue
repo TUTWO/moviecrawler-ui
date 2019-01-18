@@ -1,15 +1,19 @@
 <template>
   <div class="movies">
+    <Breadcrumb separator=">" style="padding: 10px;">
+      <BreadcrumbItem to="/"><Tag>搜索</Tag></BreadcrumbItem>
+      <BreadcrumbItem><Tag>{{this.movieType}}</Tag></BreadcrumbItem>
+    </Breadcrumb>
     <Layout>
+
       <Header style="background-color: #fff;">
-        <!-- <SearchInput></SearchInput> -->
         <Input search enter-button placeholder="关键字搜索" size="large" style="width: 400px; margin: auto; top: 25%;" @on-search="selectMovies" />
       </Header>
       <Content>
         <div id="movies" style="width: 80%; margin: auto">
         <BackTop></BackTop>
           <Table :data="historyMovie" :columns="columns1" :loading="loading" @on-row-click="showMovieDetail" stripe></Table>
-          <div style="margin: 10px;overflow: hidden">
+          <div style="margin: 10px; overflow: hidden">
             <div style="float: right;">
               <Page :total="arrs.length" :current="1" :page-size="pageSize" @on-change="changePage" ></Page>
             </div>
@@ -32,12 +36,12 @@ export default {
       pageSize: 10,
       historyMovie: [],
       loading: true,
+      movieType: localStorage.getItem('type'),
       columns1: [
         {
           title: '电影海报',
           key: 'cover',
           render: (h, params) => {
-            // console.log(params.row).cover;
             return h('img', {
               attrs: {
                 src: params.row.cover, style: 'width:100px',
@@ -76,17 +80,20 @@ export default {
     },
     showMovieDetail(e, index) {
       this.$router.push({
-        path: '/movieDetail',
-        query: {
-         type: e,
+        name: 'movieDetail',
+        params: {
+         type: this.$route.query.type,
+         detail: e,
         },
       });
+      localStorage.setItem('localMovie', JSON.stringify(e));
+      // localStorage.setItem('type', this.)
     },
     selectMovies(searchMovies) {
       this.loading = true;
       this.$router.push({
-                path: '/movie',
-                query: {
+                name: 'movie',
+                params: {
                     type: searchMovies,
                 },
             });
@@ -95,11 +102,13 @@ export default {
       this.arrs = data.data.data;
       this.loading = false;
       this.handleListApproveHistory();
+      localStorage.setItem('type', searchMovies);
+      this.movieType = localStorage.getItem('type');
     });
     },
   },
   created() {
-    this.$http.get('https://movie.house-map.cn/v1/movies/' + this.$route.query.type)
+    this.$http.get('https://movie.house-map.cn/v1/movies/' + localStorage.getItem('type'))
     .then((data) => {
       this.arrs = data.data.data;
       this.loading = false;

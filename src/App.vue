@@ -2,8 +2,8 @@
   <div id="app">
     <div id="nav">
       双马尾放映室
-      <Icon type="logo-youtube" />
     </div>
+    <MenuType></MenuType>
     <router-view/>
     </div>
 </template>
