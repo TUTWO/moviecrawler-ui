@@ -8,13 +8,14 @@
         <SearchInput></SearchInput>
       </Header>
       <Content style="margin-top: 50px;">
-        <Divider orientation="left">今日推荐</Divider>
+        <!-- <Divider orientation="left">今日推荐</Divider>
         <Row :gutter="16" type="flex" justify="center" class="code-row-bg">
           <Col v-for="item in movies" v-bind:key="item.name" span="2">
             <img v-bind:src="item.cover" style="width: 100px; height: 150px;" @click="showMovieDetail(item)">
             <p>{{item.name}}</p>
           </Col>
-        </Row>
+        </Row> -->
+        <Recommendation></Recommendation>
       </Content>
       <!-- <div style="background-color: #fff; width: 40%; margin: auto;">
         <Carousel loop autoplay style="background-color: #fff; margin-top: 100px;">
