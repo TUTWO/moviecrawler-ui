@@ -33,7 +33,7 @@ export default {
         },
     },
     created() {
-        this.$http.get('https://twin-tail.cn/api/movies/recommendation')
+        this.$http.get('https://movie-map.cn/api/recommendation?size=30')
         .then((data) => {
             this.movies = data.data.data;
         });
