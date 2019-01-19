@@ -22,6 +22,7 @@ export default {
   methods: {
     movieType(name) {
         location.reload();
+        localStorage.setItem('type', name);
         this.$router.push({
             path: '/movieType',
             query: {

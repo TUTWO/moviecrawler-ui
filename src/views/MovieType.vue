@@ -85,14 +85,17 @@ export default {
             this.historyMovie = this.arrs.slice(start, end);
         },
         showMovieDetail(e, index) {
-            this.$router.push({
-                name: 'movieDetail',
-            });
             localStorage.setItem('localMovie', JSON.stringify(e));
+            this.$router.push({
+                path: 'movieDetail',
+                query: {
+                    name: e.name,
+                },
+            });
         },
     },
     created() {
-        this.$http.get('https://movie.house-map.cn/v1/movies/' + this.$route.query.type)
+        this.$http.get('https://movie.house-map.cn/v1/movies/?type=' + this.$route.query.type)
         .then((data) => {
             this.arrs = data.data.data;
             this.loading = false;
