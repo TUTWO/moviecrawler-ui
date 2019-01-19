@@ -1,5 +1,5 @@
 <template>
-      <Input search enter-button placeholder="关键字搜索" size="large" style="width: 400px; margin: auto; top: 25%;" @on-search="selectMovies" />
+      <Input search placeholder="关键字搜索" size="large" style="width: 80%; top: 25%;" @on-search="selectMovies" />
 </template>
 <script>
 export default {
@@ -18,6 +18,7 @@ export default {
                 },
             });
             localStorage.setItem('type', searchMovies);
+            location.reload();
         },
     },
 };
