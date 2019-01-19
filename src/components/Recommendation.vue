@@ -24,12 +24,11 @@ export default {
             localStorage.setItem('type', '推荐');
             this.$router.go(0);
             this.$router.push({
-            name: 'movieDetail',
-            params: {
-                type: '推荐',
-                detail: item,
-            },
-        });
+                path: '/movieDetail',
+                query: {
+                    name: item.name,
+                },
+            });
         },
     },
     created() {

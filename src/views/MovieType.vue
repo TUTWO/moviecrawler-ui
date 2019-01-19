@@ -85,13 +85,13 @@ export default {
             this.historyMovie = this.arrs.slice(start, end);
         },
         showMovieDetail(e, index) {
+            localStorage.setItem('localMovie', JSON.stringify(e));
             this.$router.push({
                 path: 'movieDetail',
                 query: {
                     name: e.name,
                 },
             });
-            localStorage.setItem('localMovie', JSON.stringify(e));
         },
     },
     created() {

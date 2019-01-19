@@ -18,8 +18,8 @@
                 <Content style="width: 100%;">
                     <div style="margin: 20px 50px; font-size: 18px; text-align: left; ">
                         <p>片名 : {{movie.name}}</p>
-                        <p>上映时间 : {{movie.publishTime.toString().substring(0,10)}}</p>
-                        <p>更新时间 : {{movie.updateTime.toString().substring(0,10)}}</p>
+                        <p>上映时间 : {{movie.publishTime===null?'0000-00-00':movie.publishTime.toString().substring(0,10)}}</p>
+                        <p>更新时间 : {{movie.updateTime===null?'0000-00-00':movie.updateTime.toString().substring(0,10)}}</p>
                         <p><Tag color="primary"><a @click="selectMovieType">{{movie.type===null?'未知':movie.type}}</a></Tag></p>
                     </div>
                 </Content>
@@ -47,8 +47,7 @@ export default {
     name: 'movieDetail',
     data() {
         return {
-            movie: localStorage.getItem('localMovie'),
-            keyword: localStorage.getItem('keyword'),
+            movie: JSON.parse(localStorage.getItem('localMovie')),
         };
     },
     methods: {
@@ -62,8 +61,6 @@ export default {
         },
     },
     created() {
-        // this.movie = JSON.parse(localStorage.getItem('localMovie'));
-        // this.keyword = localStorage.getItem('keyword');
         this.$http.get('https://movie-map.cn/api/movies/' + this.$route.query.name)
         .then((data) => {
             this.movie = data.data.data[0];

@@ -103,7 +103,7 @@ export default {
       this.arrs = data.data.data;
       this.loading = false;
       this.handleListApproveHistory();
-      localStorage.setItem('keyword', searchMovies);
+      // localStorage.setItem('keyword', searchMovies);
       // this.movieType = localStorage.getItem('keyword');
     });
     },
