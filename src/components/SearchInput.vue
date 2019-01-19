@@ -12,13 +12,10 @@ export default {
     methods: {
         selectMovies(searchMovies) {
             this.$router.push({
-                name: 'movie',
-                params: {
-                    type: searchMovies,
-                },
+                path: '/movie',
             });
             localStorage.setItem('type', searchMovies);
-            location.reload();
+            // location.reload();
         },
     },
 };

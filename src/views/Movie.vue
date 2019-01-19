@@ -81,10 +81,6 @@ export default {
     showMovieDetail(e, index) {
       this.$router.push({
         name: 'movieDetail',
-        params: {
-         type: this.$route.query.type,
-         detail: e,
-        },
       });
       localStorage.setItem('localMovie', JSON.stringify(e));
       // localStorage.setItem('type', this.)
@@ -93,9 +89,6 @@ export default {
       this.loading = true;
       this.$router.push({
                 name: 'movie',
-                params: {
-                    type: searchMovies,
-                },
             });
       this.$http.get('https://movie.house-map.cn/v1/movies/' + searchMovies)
       .then((data) => {
