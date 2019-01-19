@@ -62,8 +62,12 @@ export default {
         },
     },
     created() {
-        this.movie = JSON.parse(localStorage.getItem('localMovie'));
-        this.keyword = localStorage.getItem('keyword');
+        // this.movie = JSON.parse(localStorage.getItem('localMovie'));
+        // this.keyword = localStorage.getItem('keyword');
+        this.$http.get('https://movie-map.cn/api/movies/' + this.$route.query.name)
+        .then((data) => {
+            this.movie = data.data.data[0];
+        });
     },
 };
 </script>

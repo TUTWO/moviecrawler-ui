@@ -82,7 +82,10 @@ export default {
     },
     showMovieDetail(e, index) {
       this.$router.push({
-        name: 'movieDetail',
+        path: '/movieDetail',
+        query: {
+          name: e.name,
+        },
       });
       localStorage.setItem('localMovie', JSON.stringify(e));
       // localStorage.setItem('type', this.)
@@ -101,11 +104,13 @@ export default {
       this.loading = false;
       this.handleListApproveHistory();
       localStorage.setItem('keyword', searchMovies);
-      this.movieType = localStorage.getItem('keyword');
+      // this.movieType = localStorage.getItem('keyword');
     });
     },
   },
   created() {
+    // this.$http.get('https://movie.house-map.cn/v1/movies/' + localStorage.getItem('keyword'))
+    localStorage.setItem('keyword', this.$route.query.keyword);
     this.$http.get('https://movie.house-map.cn/v1/movies/' + this.$route.query.keyword)
     .then((data) => {
       this.arrs = data.data.data;

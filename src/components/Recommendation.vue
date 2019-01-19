@@ -2,7 +2,7 @@
   <div>
     <Divider orientation="center" style="font-size: 30px;">今日推荐</Divider>
     <Row :gutter="16" type="flex" justify="center" class="code-row-bg">
-      <Col v-for="item in movies" v-bind:key="item.name" span="2">
+      <Col v-for="item in movies" v-bind:key="item.name" span="3">
         <img v-bind:src="item.cover" style="width: 100px; height: 150px;" @click="showMovieDetail(item)">
         <p>{{item.name}}</p>
       </Col>
@@ -33,7 +33,7 @@ export default {
         },
     },
     created() {
-        this.$http.get('https://twin-tail.cn/api/movies/recommendation')
+        this.$http.get('https://movie-map.cn/api/recommendation?size=30')
         .then((data) => {
             this.movies = data.data.data;
         });
