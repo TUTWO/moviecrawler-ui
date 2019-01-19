@@ -36,7 +36,7 @@ export default {
   methods: {
   },
   created() {
-    (this as any).$http.get('https://twin-tail.cn/api/movies/recommendation')
+    (this as any).$http.get('https://movie-map.cn/api/recommendation?size=30')
     .then((data: any) => {
       (this as any).movies = data.data.data;
     });

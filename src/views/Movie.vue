@@ -98,7 +98,7 @@ export default {
                   keyword: searchMovies,
                 },
             });
-      this.$http.get('https://movie.house-map.cn/v1/movies/' + searchMovies)
+      this.$http.get('https://movie-map.cn/api/movies/' + searchMovies)
       .then((data) => {
       this.arrs = data.data.data;
       this.loading = false;
@@ -109,9 +109,9 @@ export default {
     },
   },
   created() {
-    // this.$http.get('https://movie.house-map.cn/v1/movies/' + localStorage.getItem('keyword'))
     localStorage.setItem('keyword', this.$route.query.keyword);
-    this.$http.get('https://movie.house-map.cn/v1/movies/' + this.$route.query.keyword)
+    this.$http.get('https://movie-map.cn/api/movies/' + this.$route.query.keyword)
+
     .then((data) => {
       this.arrs = data.data.data;
       this.loading = false;
