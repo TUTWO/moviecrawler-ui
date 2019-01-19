@@ -1,9 +1,10 @@
 <template>
   <div id="app">
     <div id="nav">
-      双马尾放映室
+      <a style="float: right; margin: 10px 30px;">双马尾放映室</a><MenuType style="width:70%; background-color: #1E89E0;"></MenuType>
+      <!-- <SearchInput></SearchInput> -->
     </div>
-    <MenuType></MenuType>
+    <br />
     <router-view/>
     </div>
 </template>
@@ -17,11 +18,11 @@
   color: #2c3e50;
 }
 #nav {
-  padding: 10px;
-  background-color: #1E89E0;
+  // padding: 10px;
+  background-color: #2D8CF0;
   a {
     font-weight: bold;
-    color: #2c3e50;
+    color: #ffffff;
     &.router-link-exact-active {
       color: #42b983;
     }

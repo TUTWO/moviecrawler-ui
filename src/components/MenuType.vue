@@ -1,6 +1,6 @@
 <template>
-    <div style="width: 40%; margin: auto;">
-        <Menu mode="horizontal" active-name="1" style="width: 100%; margin: auto;">
+    <div>
+        <Menu mode="horizontal" active-name="1" :theme="theme1">
             <MenuItem name="1" to="/">首页</MenuItem>
             <MenuItem name="2">动作</MenuItem>
             <MenuItem name="3">剧情</MenuItem>
@@ -16,7 +16,7 @@ export default {
     name: 'MenuType',
     data() {
         return {
-
+            theme1: 'primary',
         };
     },
     methods: {

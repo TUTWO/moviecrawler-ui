@@ -1,14 +1,16 @@
 <template>
     <div>
-        <Breadcrumb separator=">" style="padding: 10px;">
+        <div>
+        <!-- <Breadcrumb separator=">" style="padding: 10px;">
             <BreadcrumbItem to="/"><Tag>搜索</Tag></BreadcrumbItem>
             <BreadcrumbItem to="/movie"><Tag>{{this.type}}</Tag></BreadcrumbItem>
             <BreadcrumbItem>{{movie.name}}</BreadcrumbItem>
-        </Breadcrumb>
-        <Layout style="width: 70%; margin: auto;">
-            
-            <Header style="background-color:  #fff;"><SearchInput></SearchInput></Header>
-            <h1 style=" padding: 20px; font-size: 26px;  background-color:  #fff;">{{movie.name}}</h1>
+        </Breadcrumb> -->
+        </div>
+        <SearchInput style="margin-top: 20px;"></SearchInput>
+        <Layout style="width: 80%; margin: auto;">
+            <Header style="background-color:  #fff;"></Header>
+            <h1 style="padding-bottom: 10px; font-size: 26px;  background-color:  #fff;">{{movie.name}}</h1>
             <Layout>
                 <Sider hide-trigger style="background-color:  #F5F7F9; margin: 20px;" width="25%">
                     <img v-bind:src="movie.cover" style="width: 100%" />

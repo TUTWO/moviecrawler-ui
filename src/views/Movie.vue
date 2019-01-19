@@ -1,13 +1,13 @@
 <template>
   <div class="movies">
-    <Breadcrumb separator=">" style="padding: 10px;">
+    <!-- <Breadcrumb separator=">" style="padding: 10px;">
       <BreadcrumbItem to="/"><Tag>搜索</Tag></BreadcrumbItem>
       <BreadcrumbItem><Tag>{{this.movieType}}</Tag></BreadcrumbItem>
-    </Breadcrumb>
+    </Breadcrumb> -->
     <Layout>
 
       <Header style="background-color: #fff;">
-        <Input search enter-button placeholder="关键字搜索" size="large" style="width: 400px; margin: auto; top: 25%;" @on-search="selectMovies" />
+        <Input search enter-button placeholder="关键字搜索" size="large" style="width: 85%; margin: auto; top: 25%;" @on-search="selectMovies" />
       </Header>
       <Content>
         <div id="movies" style="width: 80%; margin: auto">
