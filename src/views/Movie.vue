@@ -90,7 +90,7 @@ export default {
       this.$router.push({
                 name: 'movie',
             });
-      this.$http.get('https://movie-map.cn/v1/movies/' + searchMovies)
+      this.$http.get('https://movie-map.cn/api/movies/' + searchMovies)
       .then((data) => {
       this.arrs = data.data.data;
       this.loading = false;
@@ -101,7 +101,7 @@ export default {
     },
   },
   created() {
-    this.$http.get('https://movie-map.cn/v1/movies/' + localStorage.getItem('type'))
+    this.$http.get('https://movie-map.cn/api/movies/' + localStorage.getItem('type'))
     .then((data) => {
       this.arrs = data.data.data;
       this.loading = false;
