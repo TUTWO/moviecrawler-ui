@@ -5,7 +5,6 @@
       <BreadcrumbItem><Tag>{{this.movieType}}</Tag></BreadcrumbItem>
     </Breadcrumb> -->
     <Layout>
-
       <Header style="background-color: #fff;">
         <Input search enter-button placeholder="关键字搜索" size="large" style="width: 85%; margin: auto; top: 25%;" @on-search="selectMovies" />
       </Header>
@@ -36,7 +35,7 @@ export default {
       pageSize: 10,
       historyMovie: [],
       loading: true,
-      movieType: localStorage.getItem('type'),
+      movieType: localStorage.getItem('keyword'),
       columns1: [
         {
           title: '电影海报',
@@ -60,6 +59,9 @@ export default {
         {
           title: '上映时间',
           key: 'publishTime',
+          render: (h, params) => {
+                return h('p', (params.row.publishTime.toString().substring(0, 10)));
+            },
         },
       ],
     };
@@ -88,20 +90,23 @@ export default {
     selectMovies(searchMovies) {
       this.loading = true;
       this.$router.push({
-                name: 'movie',
+                path: '/movie',
+                query: {
+                  keyword: searchMovies,
+                },
             });
       this.$http.get('https://movie.house-map.cn/v1/movies/' + searchMovies)
       .then((data) => {
       this.arrs = data.data.data;
       this.loading = false;
       this.handleListApproveHistory();
-      localStorage.setItem('type', searchMovies);
-      this.movieType = localStorage.getItem('type');
+      localStorage.setItem('keyword', searchMovies);
+      this.movieType = localStorage.getItem('keyword');
     });
     },
   },
   created() {
-    this.$http.get('https://movie.house-map.cn/v1/movies/' + localStorage.getItem('type'))
+    this.$http.get('https://movie.house-map.cn/v1/movies/' + this.$route.query.keyword)
     .then((data) => {
       this.arrs = data.data.data;
       this.loading = false;
