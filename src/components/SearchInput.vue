@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Input search placeholder="关键字搜索" size="large" style="width: 80%; top: 25%;" @on-search="selectMovies" />
+        <Input search placeholder="关键字搜索" size="large" style="width: 80%; top: 25%; margin-top: 20px;" @on-search="selectMovies" />
         <div style="width: 80%; margin: auto;">
             <!-- <Divider orientation="left" style="font-size: 10px;">历史记录</Divider> -->
             <!-- <Tap v-for="item in history" v-bind:key="item" closable @on-close="deleteTag">

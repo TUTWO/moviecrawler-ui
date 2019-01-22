@@ -1,9 +1,9 @@
 <template>
     <div>
+        <SearchInput></SearchInput>
         <Layout>
         <Header style="background-color: #fff;">
         <!-- <Input search enter-button placeholder="关键字搜索" size="large" style="width: 85%; margin: auto; top: 25%;" @on-search="selectMovies" /> -->
-            <SearchInput></SearchInput>
         </Header>
         <Content>
             <div id="movies" style="width: 80%; margin: auto">
@@ -62,13 +62,14 @@ export default {
                 return  h('p', params.row.type === null ? '未知' : params.row.type);
             },
         },
-        {
-            title: '上映时间',
-            key: 'publishTime',
-            render: (h, params) => {
-                return h('p', (params.row.publishTime.toString().substring(0, 10)));
-            },
-        }]};
+        // {
+        //     title: '上映时间',
+        //     key: 'publishTime',
+        //     render: (h, params) => {
+        //         return h('p', (params.row.publishTime.toString().substring(0, 10)));
+        //     },
+        // }
+        ]};
     },
     methods: {
         handleListApproveHistory() {

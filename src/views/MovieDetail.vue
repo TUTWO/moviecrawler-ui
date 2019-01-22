@@ -15,12 +15,12 @@
                 <Sider hide-trigger style="background-color:  #F5F7F9; margin: 20px;" width="25%">
                     <img v-bind:src="movie.cover" style="width: 100%" />
                 </Sider>
-                <Content style="width: 100%;">
+                <Content style="width: 75%;">
                     <div style="margin: 20px 50px; font-size: 18px; text-align: left; ">
                         <p>片名 : {{movie.name}}</p>
-                        <p>上映时间 : {{movie.publishTime===null?'0000-00-00':movie.publishTime.toString().substring(0,10)}}</p>
+                        <!-- <p>上映时间 : {{movie.publishTime===null?'0000-00-00':movie.publishTime.toString().substring(0,10)}}</p> -->
                         <p>更新时间 : {{movie.updateTime===null?'0000-00-00':movie.updateTime.toString().substring(0,10)}}</p>
-                        <p><Tag color="primary"><a @click="selectMovieType">{{movie.type===null?'未知':movie.type}}</a></Tag></p>
+                        <p><a @click="selectMovieType">{{movie.type===null?'未知':movie.type}}</a></p>
                     </div>
                 </Content>
             </Layout>

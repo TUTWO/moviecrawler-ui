@@ -1,11 +1,11 @@
 <template>
   <div class="layout">
+    <SearchInput></SearchInput>
     <Layout style="background-color: #fff;">
       <!-- <Breadcrumb style="padding: 10px;">
         <BreadcrumbItem><Tag>搜索</Tag></BreadcrumbItem>
       </Breadcrumb> -->
       <Header style="background-color: #fff;">
-        <SearchInput></SearchInput>
       </Header>
       <Content style="margin-top: 50px;">
         <Recommendation></Recommendation>
