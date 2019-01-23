@@ -4,9 +4,9 @@
       <BreadcrumbItem to="/"><Tag>搜索</Tag></BreadcrumbItem>
       <BreadcrumbItem><Tag>{{this.movieType}}</Tag></BreadcrumbItem>
     </Breadcrumb> -->
+    <Input search enter-button placeholder="关键字搜索" size="large" style="width: 80%; margin: auto; top: 25%;" @on-search="selectMovies" />
     <Layout>
       <Header style="background-color: #fff;">
-        <Input search enter-button placeholder="关键字搜索" size="large" style="width: 85%; margin: auto; top: 25%;" @on-search="selectMovies" />
       </Header>
       <Content>
         <div id="movies" style="width: 80%; margin: auto">
@@ -56,13 +56,13 @@ export default {
           title: '电影类型',
           key: 'type',
         },
-        {
-          title: '上映时间',
-          key: 'publishTime',
-          render: (h, params) => {
-                return h('p', (params.row.publishTime.toString().substring(0, 10)));
-            },
-        },
+        // {
+        //   title: '上映时间',
+        //   key: 'publishTime',
+        //   render: (h, params) => {
+        //         return h('p', (params.row.publishTime.toString().substring(0, 10)));
+        //     },
+        // },
       ],
     };
   },
