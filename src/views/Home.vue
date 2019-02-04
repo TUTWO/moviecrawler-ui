@@ -7,7 +7,7 @@
       </Breadcrumb> -->
       <Header style="background-color: #fff;">
       </Header>
-      <Content style="margin-top: 50px;">
+      <Content style="margin-top: 50px; width:90%; margin: auto;">
         <Recommendation></Recommendation>
       </Content>
       <div style="background-color: #fff; width: 40%; margin: auto;">

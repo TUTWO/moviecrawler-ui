@@ -37,7 +37,9 @@
             <Footer style="margin: 20px;">
             </Footer>
         </Layout>
-        <Recommendation></Recommendation>
+        <div style="width:95%; margin: auto;">
+            <Recommendation></Recommendation>
+        </div>
     </div>
 </template>
 <script>
