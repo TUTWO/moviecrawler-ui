@@ -11,7 +11,7 @@
       <Content>
         <div id="movies" style="width: 80%; margin: auto">
         <BackTop></BackTop>
-          <Table :data="historyMovie" :columns="columns1" :loading="loading" @on-row-click="showMovieDetail" stripe></Table>
+          <Table :data="historyMovie" :columns="columns1" :loading="loading" stripe></Table>
           <div style="margin: 10px; overflow: hidden">
             <div style="float: right;">
               <Page :total="arrs.length" :current="1" :page-size="pageSize" @on-change="changePage" ></Page>
@@ -56,13 +56,28 @@ export default {
           title: '电影类型',
           key: 'type',
         },
-        // {
-        //   title: '上映时间',
-        //   key: 'publishTime',
-        //   render: (h, params) => {
-        //         return h('p', (params.row.publishTime.toString().substring(0, 10)));
-        //     },
-        // },
+        {
+            title: '查看详情',
+            render: (h, params) => {
+                return h('div', [
+                    h('Button', {
+                        props: {
+                            type: 'primary',
+                            size: 'small',
+                        },
+                        style: {
+                            marginRight: '5px',
+                        },
+                        on: {
+                            click: (e, index) => {
+                                const link = './#/movieDetail?name=' + params.row.name;
+                                window.open(link, '_blank');
+                            },
+                        },
+                    }, '查看'),
+                ]);
+            },
+        },
       ],
     };
   },
@@ -80,16 +95,6 @@ export default {
       const end = index * this.pageSize;
       this.historyMovie = this.arrs.slice(start, end);
     },
-    showMovieDetail(e, index) {
-      this.$router.push({
-        path: '/movieDetail',
-        query: {
-          name: e.name,
-        },
-      });
-      localStorage.setItem('localMovie', JSON.stringify(e));
-      // localStorage.setItem('type', this.)
-    },
     selectMovies(searchMovies) {
       this.loading = true;
       this.$router.push({
@@ -103,15 +108,12 @@ export default {
       this.arrs = data.data.data;
       this.loading = false;
       this.handleListApproveHistory();
-      // localStorage.setItem('keyword', searchMovies);
-      // this.movieType = localStorage.getItem('keyword');
     });
     },
   },
   created() {
     localStorage.setItem('keyword', this.$route.query.keyword);
     this.$http.get('https://movie-map.cn/api/movies/' + this.$route.query.keyword)
-
     .then((data) => {
       this.arrs = data.data.data;
       this.loading = false;
