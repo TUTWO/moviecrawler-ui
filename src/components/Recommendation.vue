@@ -30,15 +30,9 @@ export default {
     },
     methods: {
         showMovieDetail(item) {
-            localStorage.setItem('localMovie', JSON.stringify(item));
-            localStorage.setItem('type', '推荐');
-            this.$router.go(0);
-            this.$router.push({
-                path: '/movieDetail',
-                query: {
-                    name: item.name,
-                },
-            });
+            
+            const link = './#/movieDetail?name=' + item.name;
+            window.open(link, '_blank');
         },
     },
     created() {
