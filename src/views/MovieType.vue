@@ -8,11 +8,17 @@
         <Content>
             <div id="movies" style="width: 80%; margin: auto">
                 <BackTop></BackTop>
-                <Table
+                <!-- <Table
                 :data="historyMovie"
                 :columns="columns1"
                 :loading="loading"
                 @on-row-click="showMovieDetail"
+                stripe
+                ></Table> -->
+                <Table
+                :data="historyMovie"
+                :columns="columns1"
+                :loading="loading"
                 stripe
                 ></Table>
                 <div style="margin: 10px; overflow: hidden">
@@ -62,13 +68,28 @@ export default {
                 return  h('p', params.row.type === null ? '未知' : params.row.type);
             },
         },
-        // {
-        //     title: '上映时间',
-        //     key: 'publishTime',
-        //     render: (h, params) => {
-        //         return h('p', (params.row.publishTime.toString().substring(0, 10)));
-        //     },
-        // }
+        {
+            title: '查看详情',
+            render: (h, params) => {
+                return h('div', [
+                    h('Button', {
+                        props: {
+                            type: 'primary',
+                            size: 'small',
+                        },
+                        style: {
+                            marginRight: '5px',
+                        },
+                        on: {
+                            click: (e, index) => {
+                                const link = './#/movieDetail?name=' + params.row.name;
+                                window.open(link, '_blank');
+                            },
+                        },
+                    }, '查看'),
+                ]);
+            },
+        },
         ]};
     },
     methods: {
@@ -94,6 +115,15 @@ export default {
                 },
             });
         },
+        // openNewWindow(e, index) {
+        //     let routeData = this.$router.resolve({
+        //         path: '/movieDetail',
+        //         query: {
+        //             name: e.name,
+        //         },
+        //     });
+        //     window.open(routeData.href, '_blank');
+        // },
     },
     created() {
         // API支持分页的,可以考虑直接在页面列出1-50页,让用户点击的时候再去加载,这样性能上更好

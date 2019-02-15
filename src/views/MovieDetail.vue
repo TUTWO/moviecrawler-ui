@@ -29,7 +29,7 @@
                 <Tag style="margin: 20px">注意:</Tag>复制下列地址至浏览器地址栏即可观看正版影片，本站不提供在线正版播放
                 <div v-for="item in movie.downResources" v-bind:key="item.description" style="margin: 0 20px;">
                     <p>
-                    类型 : {{item.description}} <br />
+                    <a style="text-decoration: underline;" :href="item.link" target="_blank">类型 : {{item.description}}</a> <br />
                     链接 : {{item.link}}
                     </p>
                 </div>
@@ -37,7 +37,9 @@
             <Footer style="margin: 20px;">
             </Footer>
         </Layout>
-        <Recommendation></Recommendation>
+        <div style="width:95%; margin: auto;">
+            <Recommendation></Recommendation>
+        </div>
     </div>
 </template>
 <script>

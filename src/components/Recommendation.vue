@@ -1,12 +1,22 @@
 <template>
-  <div>
+  <div style="margin: auto;">
     <Divider orientation="center" style="font-size: 30px;">今日推荐</Divider>
-    <Row :gutter="16" type="flex" justify="center" class="code-row-bg">
+    <!-- <Row :gutter="16" type="flex" justify="center" class="code-row-bg">
       <Col v-for="item in movies" v-bind:key="item.name" span="3">
         <img v-bind:src="item.cover" style="width: 100px; height: 150px;" @click="showMovieDetail(item)">
         <p>{{item.name}}</p>
+        <Card>
+        <img v-bind:src="item.cover" style="width: 100px; height: 150px;" @click="showMovieDetail(item)">
+        <p>{{item.name}}</p>
+    </Card>
       </Col>
-    </Row>
+    </Row> -->
+    <div style="margin: auto;">
+        <div v-for="item in movies" v-bind:key="item.name" style="float: left; margin: 5px; height: 200px;">  
+            <img v-bind:src="item.cover" style="width: 100px; height: 150px;" @click="showMovieDetail(item)">
+            <p style="width: 90px;">{{item.name}}</p>
+        </div>
+    </div>
   </div>
 </template>
 
