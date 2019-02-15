@@ -115,14 +115,6 @@ export default {
                 },
             });
         },
-        // openNewWindow(e, index) {
-        //     let routeData = this.$router.resolve({
-        //         path: '/movieDetail',
-        //         query: {
-        //             name: e.name,
-        //         },
-        //     });
-        //     window.open(routeData.href, '_blank');
         // },
     },
     created() {

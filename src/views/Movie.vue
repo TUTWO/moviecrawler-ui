@@ -55,6 +55,9 @@ export default {
         {
           title: '电影类型',
           key: 'type',
+          render: (h, params) => {
+            return  h('p', params.row.type === null ? '未知' : params.row.type);
+          },
         },
         {
             title: '查看详情',
