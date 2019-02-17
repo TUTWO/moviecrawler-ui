@@ -8,19 +8,8 @@
         <Content>
             <div id="movies" style="width: 80%; margin: auto">
                 <BackTop></BackTop>
-                <!-- <Table
-                :data="historyMovie"
-                :columns="columns1"
-                :loading="loading"
-                @on-row-click="showMovieDetail"
-                stripe
-                ></Table> -->
-                <Table
-                :data="historyMovie"
-                :columns="columns1"
-                :loading="loading"
-                stripe
-                ></Table>
+                <Table v-if="this.columns==1" :data="historyMovie" :columns="columns1" :loading="loading" stripe></Table>
+                <Table v-if="this.columns==2" :data="historyMovie" :columns="columns2" :loading="loading" stripe @on-row-click="showMovieDetail"></Table>
                 <div style="margin: 10px; overflow: hidden">
                     <div style="float: right;">
                     <Page :total="arrs.length" :current="1" :page-size="pageSize" @on-change="changePage"></Page>
@@ -43,7 +32,7 @@ export default {
         pageSize: 10,
         historyMovie: [],
         loading: true,
-        movieType: localStorage.getItem('type'),
+        columns: 1,
         columns1: [
         {
             title: '电影海报',
@@ -89,8 +78,29 @@ export default {
                     }, '查看'),
                 ]);
             },
+        } ],
+        columns2: [
+        {
+            title: '电影海报',
+            key: 'cover',
+            render: (h, params) => {
+                return h('img', {
+                    attrs: {
+                        src: params.row.cover,
+                        style: 'width:100px',
+                    },
+                });
+            },
         },
-        ]};
+        {
+            title: '电影名',
+            key: 'name',
+            render: (h, params) => {
+                return h('p', params.row.name.toString().substring(0, 8) + '...');
+            },
+        },
+        ],
+        };
     },
     methods: {
         handleListApproveHistory() {
@@ -107,7 +117,6 @@ export default {
             this.historyMovie = this.arrs.slice(start, end);
         },
         showMovieDetail(e, index) {
-            localStorage.setItem('localMovie', JSON.stringify(e));
             this.$router.push({
                 path: 'movieDetail',
                 query: {
@@ -119,12 +128,17 @@ export default {
     },
     created() {
         // API支持分页的,可以考虑直接在页面列出1-50页,让用户点击的时候再去加载,这样性能上更好
-        this.$http.get('https://movie.house-map.cn/v1/movies/?type=' + this.$route.query.type + "&size=100")
+        this.$http.get('https://movie.house-map.cn/v1/movies/?type=' + this.$route.query.type + '&size=100')
         .then((response) => {
             this.arrs = response.data.data;
             this.loading = false;
             this.handleListApproveHistory();
         });
+        if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
+            this.columns = 2;
+        } else {
+            this.columns = 1;
+        }
     },
 };
 </script>

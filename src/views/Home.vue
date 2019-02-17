@@ -2,23 +2,11 @@
   <div class="layout">
     <SearchInput></SearchInput>
     <Layout style="background-color: #fff;">
-      <!-- <Breadcrumb style="padding: 10px;">
-        <BreadcrumbItem><Tag>搜索</Tag></BreadcrumbItem>
-      </Breadcrumb> -->
       <Header style="background-color: #fff;">
       </Header>
-      <Content style="margin-top: 50px; width:90%; margin: auto;">
+      <Content style="margin-top: 50px; width:98%; margin: auto;">
         <Recommendation></Recommendation>
       </Content>
-      <div style="background-color: #fff; width: 40%; margin: auto;">
-        <!-- <Carousel loop autoplay style="background-color: #fff; margin-top: 100px;">
-          <CarouselItem v-for="item in movies" v-bind:key="item.name"> 
-            <div>
-              <img v-bind:src="item.cover" style="width: 80%; height: 70%;" @click="showMovieDetail(item)" />
-            </div>
-          </CarouselItem>
-        </Carousel> -->
-      </div>
       <Footer style="background-color: #fff;"></Footer>
     </Layout>
   </div>

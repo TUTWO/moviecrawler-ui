@@ -1,9 +1,5 @@
 <template>
   <div class="movies">
-    <!-- <Breadcrumb separator=">" style="padding: 10px;">
-      <BreadcrumbItem to="/"><Tag>搜索</Tag></BreadcrumbItem>
-      <BreadcrumbItem><Tag>{{this.movieType}}</Tag></BreadcrumbItem>
-    </Breadcrumb> -->
     <Input search enter-button placeholder="关键字搜索" size="large" style="width: 80%; margin: auto; top: 25%;" @on-search="selectMovies" />
     <Layout>
       <Header style="background-color: #fff;">
@@ -11,7 +7,8 @@
       <Content>
         <div id="movies" style="width: 80%; margin: auto">
         <BackTop></BackTop>
-          <Table :data="historyMovie" :columns="columns1" :loading="loading" stripe></Table>
+          <Table v-if="this.columns==1" :data="historyMovie" :columns="columns1" :loading="loading" stripe></Table>
+          <Table v-if="this.columns==2" :data="historyMovie" :columns="columns2" :loading="loading" stripe @on-row-click="showMovieDetail"></Table>
           <div style="margin: 10px; overflow: hidden">
             <div style="float: right;">
               <Page :total="arrs.length" :current="1" :page-size="pageSize" @on-change="changePage" ></Page>
@@ -68,9 +65,6 @@ export default {
                             type: 'primary',
                             size: 'small',
                         },
-                        style: {
-                            marginRight: '5px',
-                        },
                         on: {
                             click: (e, index) => {
                                 const link = './#/movieDetail?name=' + params.row.name;
@@ -82,6 +76,27 @@ export default {
             },
         },
       ],
+      columns2: [
+        {
+            title: '电影海报',
+            key: 'cover',
+            render: (h, params) => {
+                return h('img', {
+                    attrs: {
+                        src: params.row.cover,
+                        style: 'width:100px',
+                    },
+                });
+            },
+        },
+        {
+            title: '电影名',
+            key: 'name',
+            render: (h, params) => {
+                return h('p', params.row.name.toString().substring(0, 8) + '...');
+            },
+        },
+        ],
     };
   },
   methods: {
@@ -113,15 +128,27 @@ export default {
       this.handleListApproveHistory();
     });
     },
+    showMovieDetail(e, index) {
+        this.$router.push({
+            path: 'movieDetail',
+            query: {
+                name: e.name,
+            },
+        });
+    },
   },
   created() {
-    localStorage.setItem('keyword', this.$route.query.keyword);
     this.$http.get('https://movie-map.cn/api/movies/' + this.$route.query.keyword)
     .then((data) => {
       this.arrs = data.data.data;
       this.loading = false;
       this.handleListApproveHistory();
     });
+    if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
+        this.columns = 2;
+    } else {
+        this.columns = 1;
+    }
   },
 };
 </script>

@@ -1,14 +1,7 @@
 <template>
     <div>
-        <div>
-        <!-- <Breadcrumb separator=">" style="padding: 10px;">
-            <BreadcrumbItem to="/"><Tag>搜索</Tag></BreadcrumbItem>
-            <BreadcrumbItem to="/movie"><Tag>{{this.type}}</Tag></BreadcrumbItem>
-            <BreadcrumbItem>{{movie.name}}</BreadcrumbItem>
-        </Breadcrumb> -->
-        </div>
         <SearchInput style="margin-top: 20px;"></SearchInput>
-        <Layout style="width: 80%; margin: auto;">
+        <Layout style="width: 90%; margin: auto;">
             <Header style="background-color:  #fff;"></Header>
             <h1 style="padding-bottom: 10px; font-size: 26px;  background-color:  #fff;">{{movie.name}}</h1>
             <Content style="width: 100%;">
@@ -37,7 +30,7 @@
             <Footer style="margin: 20px;">
             </Footer>
         </Layout>
-        <div style="width:95%; margin: auto;">
+        <div style="width:98%; margin: auto;">
             <Recommendation></Recommendation>
         </div>
     </div>
