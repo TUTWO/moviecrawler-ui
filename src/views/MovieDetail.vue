@@ -16,14 +16,14 @@
                 </div>
                 </Content>
             <Divider orientation="left">电影详情</Divider>
-            <p v-html="movie.intro">剧情介绍 : {{movie.intro}}</p>
+            <p v-html="movie.intro" style="color: grey;">剧情介绍 : {{movie.intro}}</p>
             <Divider orientation="left">电影观看</Divider>
             <div style="text-align: left;">
-                <Tag style="margin: 20px">注意:</Tag>复制下列地址至浏览器地址栏即可观看正版影片，本站不提供在线正版播放
+                <Tag style="margin: 20px;">注意:</Tag><small style="color: grey;">复制下列地址至浏览器地址栏即可观看正版影片，本站不提供在线正版播放</small>
                 <div v-for="item in movie.downResources" v-bind:key="item.description" style="margin: 0 20px;">
                     <p>
-                    <a style="text-decoration: underline;" :href="item.link" target="_blank">资源描述 : {{item.description}}</a> <br />
-                    下载/播放链接 : {{item.link}}
+                    资源描述：<a style="text-decoration: underline;" :href="item.link" target="_blank">{{item.description}}</a> <br />
+                    下载/播放链接： {{item.link}}
                     </p>
                 </div>
             </div>

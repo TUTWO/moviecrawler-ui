@@ -116,15 +116,10 @@ export default {
             const end = index * this.pageSize;
             this.historyMovie = this.arrs.slice(start, end);
         },
-        showMovieDetail(e, index) {
-            this.$router.push({
-                path: 'movieDetail',
-                query: {
-                    name: e.name,
-                },
-            });
+        showMovieDetail(e, index) {  
+            const link = './#/movieDetail?name=' + e.name;
+            window.open(link, '_blank');
         },
-        // },
     },
     created() {
         // API支持分页的,可以考虑直接在页面列出1-50页,让用户点击的时候再去加载,这样性能上更好

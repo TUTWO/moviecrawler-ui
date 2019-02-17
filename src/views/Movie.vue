@@ -129,12 +129,8 @@ export default {
     });
     },
     showMovieDetail(e, index) {
-        this.$router.push({
-            path: 'movieDetail',
-            query: {
-                name: e.name,
-            },
-        });
+      const link = './#/movieDetail?name=' + e.name;
+      window.open(link, '_blank');
     },
   },
   created() {
