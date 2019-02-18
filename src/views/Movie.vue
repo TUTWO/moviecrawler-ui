@@ -32,7 +32,6 @@ export default {
       pageSize: 10,
       historyMovie: [],
       loading: true,
-      movieType: localStorage.getItem('keyword'),
       columns1: [
         {
           title: '电影海报',
