@@ -123,7 +123,7 @@ export default {
     },
     created() {
         // API支持分页的,可以考虑直接在页面列出1-50页,让用户点击的时候再去加载,这样性能上更好
-        this.$http.get('https://movie.house-map.cn/v1/movies/?type=' + this.$route.query.type + '&size=100')
+        this.$http.get('https://movie-map.cn/api/movies/?type=' + this.$route.query.type + '&size=100')
         .then((response) => {
             this.arrs = response.data.data;
             this.loading = false;
