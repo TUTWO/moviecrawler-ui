@@ -32,13 +32,13 @@ export default {
     },
     methods: {
         movieType(name) {
-            location.reload();
             this.$router.push({
                 path: '/movieType',
                 query: {
                     type: name,
                 },
             });
+            location.reload();
         },
     },
 };
