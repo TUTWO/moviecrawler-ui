@@ -2,7 +2,21 @@
 ## 基于Vue-cli搭建的网站框架
 以网页形式提供用户电影信息资源，实现了响应式布局。vue组件使用：bootstrap-vue, iview
 
-## 主要界面设计
+## 界面设计
+分为四个模块：主界面，类型界面，关键字界面，电影详情界面
+
+## 其他
+typescript
+
+## 运行环境
+VS code
+
+## API文档
+http://git.virjar.com/liguobao/MovieCrawler/blob/master/api-doc.md
+
+
+
+# 项目运行
 
 ## Project setup
 ```
