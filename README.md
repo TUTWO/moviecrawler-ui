@@ -1,4 +1,8 @@
 # movie-ui
+## 基于Vue-cli搭建的网站框架
+以网页形式提供用户电影信息资源，实现了响应式布局。vue组件使用：bootstrap-vue, iview
+
+## 主要界面设计
 
 ## Project setup
 ```
