@@ -24,7 +24,7 @@
           ></Table>
           <div style='margin: 10px; overflow: hidden'>
             <div style='float: right;'>
-              <Page :total='arrs.length' :current='1' :page-size='pageSize' @on-change='changePage'></Page>
+              <Page :total='200' :current='1' :page-size='pageSize' @on-change='changePage'></Page>
             </div>
           </div>
         </div>
@@ -86,7 +86,7 @@ export default {
                   },
                   on: {
                     click: (e, index) => {
-                      const link = './#/movieDetail?name=' + params.row.name;
+                      const link = './#/movieDetail?id=' + params.row.id;
                       window.open(link, '_blank');
                     },
                   },
@@ -127,21 +127,20 @@ export default {
     changePage(index) {
       this.$http
         .get(
-          'http://193.112.143.85:4443/api/v1/movies?type=' +
+          'http://localhost:3000/api/v1/movies?type=' +
             this.$route.query.type +
             '&page=' +
-            index +
-            '&size=10',
-          { 'Access-Control-Allow-Origin': '*' },
+            index ,
         )
         .then(response => {
-          this.arrs = response.data.data;
+          // console.log(response);
+          this.arrs = JSON.parse(response.bodyText).data.result;
           this.loading = false;
           this.handleListApproveHistory();
         });
     },
     showMovieDetail(e, index) {
-      const link = './#/movieDetail?name=' + e.name;
+      const link = './#/movieDetail?id=' + e.id;
       window.open(link, '_blank');
     },
   },
@@ -150,12 +149,9 @@ export default {
     this.$http
       .get(
         'http://localhost:3000/api/v1/movies?type=' +
-          this.$route.query.type +
-          '&page=0&size=10',
-        { 'Access-Control-Allow-Origin': '*' },
+          this.$route.query.type + '&page=1',
       )
       .then(response => {
-        console.log(response);
         this.arrs = JSON.parse(response.bodyText).data.result;
         this.loading = false;
         this.handleListApproveHistory();

@@ -20,14 +20,14 @@ export default {
     },
     methods: {
         showMovieDetail(item) {
-            const link = './#/movieDetail?name=' + item.name;
+            const link = './#/movieDetail?id=' + item.id;
             window.open(link, '_blank');
         },
     },
     created() {
-        this.$http.get('https://movie-map.cn/api/recommendation?size=30')
-        .then((data) => {
-            this.movies = data.data.data;
+        this.$http.get('http://localhost:3000/api/v1/movies?keyword=心&size=24')
+        .then((response) => {
+            this.movies = JSON.parse(response.bodyText).data.result;
         });
     },
 };

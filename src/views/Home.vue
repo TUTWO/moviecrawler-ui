@@ -23,11 +23,5 @@ export default {
   },
   methods: {
   },
-  created() {
-    (this as any).$http.get('http://localhost:3000/api/v1/recommendation?size=30')
-    .then((data: any) => {
-      (this as any).movies = data.data.data;
-    });
-  },
 };
 </script>

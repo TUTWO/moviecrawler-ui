@@ -66,7 +66,7 @@ export default {
                         },
                         on: {
                             click: (e, index) => {
-                                const link = './#/movieDetail?name=' + params.row.name;
+                                const link = './#/movieDetail?id=' + params.row.id;
                                 window.open(link, '_blank');
                             },
                         },
@@ -121,15 +121,14 @@ export default {
                 },
             });
       this.$http.get('http://localhost:3000/api/v1/movies?keyword=' + searchMovies + '&size=500')
-      .then((data) => {
-      console.log(JSON.parse(data.bodyText));
-      this.arrs = JSON.parse(data.bodyText).data.result;
+      .then((response) => {
+      this.arrs = JSON.parse(response.bodyText).data.result;
       this.loading = false;
       this.handleListApproveHistory();
     });
     },
     showMovieDetail(e, index) {
-      const link = './#/movieDetail?name=' + e.name;
+      const link = './#/movieDetail?id=' + e.name;
       window.open(link, '_blank');
     },
   },
