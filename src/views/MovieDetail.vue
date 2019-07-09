@@ -53,7 +53,7 @@ export default {
         },
     },
     created() {
-        this.$http.get('https://movie-map.cn/api/movies/' + this.$route.query.name)
+        this.$http.get('http://localhost:3000/api/v1/movies/' + this.$route.query.name)
         .then((data) => {
             this.movie = data.data.data[0];
         });

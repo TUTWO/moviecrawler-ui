@@ -120,9 +120,10 @@ export default {
                   keyword: searchMovies,
                 },
             });
-      this.$http.get('https://movie-map.cn/api/movies/' + searchMovies)
+      this.$http.get('http://localhost:3000/api/v1/movies?keyword=' + searchMovies + '&size=500')
       .then((data) => {
-      this.arrs = data.data.data;
+      console.log(JSON.parse(data.bodyText));
+      this.arrs = JSON.parse(data.bodyText).data.result;
       this.loading = false;
       this.handleListApproveHistory();
     });
@@ -133,9 +134,10 @@ export default {
     },
   },
   created() {
-    this.$http.get('https://movie-map.cn/api/movies/' + this.$route.query.keyword)
+    this.$http.get('http://localhost:3000/api/v1/movies?keyword=' + this.$route.query.keyword + '&size=500')
     .then((data) => {
-      this.arrs = data.data.data;
+      console.log(JSON.parse(data.bodyText));
+      this.arrs = JSON.parse(data.bodyText).data.result;
       this.loading = false;
       this.handleListApproveHistory();
     });

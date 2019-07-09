@@ -24,7 +24,7 @@
           ></Table>
           <div style='margin: 10px; overflow: hidden'>
             <div style='float: right;'>
-              <Page :total='500' :current='1' :page-size='pageSize' @on-change='changePage'></Page>
+              <Page :total='arrs.length' :current='1' :page-size='pageSize' @on-change='changePage'></Page>
             </div>
           </div>
         </div>
@@ -127,7 +127,7 @@ export default {
     changePage(index) {
       this.$http
         .get(
-          'https://movie-map.cn/api/movies?type=' +
+          'http://193.112.143.85:4443/api/v1/movies?type=' +
             this.$route.query.type +
             '&page=' +
             index +
@@ -149,13 +149,14 @@ export default {
     // API支持分页的,可以考虑直接在页面列出1-50页,让用户点击的时候再去加载,这样性能上更好
     this.$http
       .get(
-        'https://movie-map.cn/api/movies?type=' +
+        'http://localhost:3000/api/v1/movies?type=' +
           this.$route.query.type +
           '&page=0&size=10',
         { 'Access-Control-Allow-Origin': '*' },
       )
       .then(response => {
-        this.arrs = response.data.data;
+        console.log(response);
+        this.arrs = JSON.parse(response.bodyText).data.result;
         this.loading = false;
         this.handleListApproveHistory();
       });
