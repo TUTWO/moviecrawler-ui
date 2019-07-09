@@ -20,12 +20,6 @@ export default {
     },
     methods: {
         selectMovies(searchMovies) {
-            // if (localStorage.getItem('history') !== null ) {
-            //     this.history = localStorage.getItem('history');
-            // }
-            // this.history.push(searchMovies);
-            // localStorage.setItem('history', this.history);
-            localStorage.setItem('keyword', searchMovies);
             this.$router.push({
                 path: '/movie',
                 query: {
