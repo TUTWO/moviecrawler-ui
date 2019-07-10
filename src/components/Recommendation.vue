@@ -1,4 +1,5 @@
 <template>
+<!-- 推荐列表 -->
   <div style="margin: auto;">
     <Divider orientation="center" style="font-size: 30px;">今日推荐</Divider>
     <div style="margin: auto;">

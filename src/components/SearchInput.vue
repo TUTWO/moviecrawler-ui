@@ -1,4 +1,5 @@
 <template>
+<!-- 搜索框 -->
     <div>
         <Input search placeholder="关键字搜索" size="large" style="width: 80%; top: 25%; margin-top: 20px;" @on-search="selectMovies" />
         <div style="width: 80%; margin: auto;">

@@ -1,4 +1,5 @@
 <template>
+<!-- 电影详情页 -->
     <div>
         <SearchInput style="margin-top: 20px;"></SearchInput>
         <Layout style="width: 90%; margin: auto;">

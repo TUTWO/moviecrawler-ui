@@ -1,4 +1,6 @@
+
 <template>
+    <!-- 导航条 -->
     <div>
         <b-navbar toggleable="lg" type="light"  variant="primary">
             <b-navbar-brand style="font-size: 32px; color: white;">双马尾放映室</b-navbar-brand>

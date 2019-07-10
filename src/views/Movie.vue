@@ -1,4 +1,5 @@
 <template>
+<!-- 电影搜索页 -->
   <div class="movies">
     <Input search enter-button placeholder="关键字搜索" size="large" style="width: 80%; margin: auto; top: 25%;" @on-search="selectMovies" />
     <Layout>
@@ -18,7 +19,6 @@
       </Content>
       <Footer style="background-color: #fff;"></Footer>
     </Layout>
-    
   </div>
 </template>
 

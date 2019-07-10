@@ -1,4 +1,5 @@
 <template>
+<!-- 主页 -->
   <div class="layout">
     <SearchInput></SearchInput>
     <Layout style="background-color: #fff;">

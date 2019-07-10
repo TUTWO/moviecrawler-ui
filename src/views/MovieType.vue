@@ -1,4 +1,5 @@
 <template>
+<!-- 电影分类页 -->
   <div>
     <SearchInput></SearchInput>
     <Layout>
